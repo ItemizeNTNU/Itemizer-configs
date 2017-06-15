@@ -1,6 +1,18 @@
 # Itemizer-configs
 The file _paradise-vm.sh_ is now configured to be able to spawn 4 different VMs. Each with 8 CPU cores, 1 GPU, 16GB RAM, one 40BG disk and one 120GB disk, and a bridged network adapter.
 
+## Network
+The VMs are set up with a bridged adapter. For it to work. The bridge has to be set up on the host machine first. This can be done by editing _/etc/network/interfaces_.
+```
+auto br0
+iface br0 inet dhcp
+	bridge_ports enp7s0
+	bridge_stp off
+	bridge_maxwait 0
+	bridge_fd 0
+```
+_vm.conf_ defines the mac addresses for the VMs. 
+
 ## Startup
 VM 1 can be started like this:
 ```
